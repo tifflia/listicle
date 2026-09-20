@@ -42,3 +42,39 @@ const renderGames = async () => {
 }
 
 renderGames()
+
+// write "Label: value" into an element, with the label in bold
+const setDetail = (id, label, value) => {
+    const element = document.getElementById(id)
+    const boldLabel = document.createElement('strong')
+    boldLabel.textContent = `${label}: `
+    element.replaceChildren(boldLabel, document.createTextNode(value))
+}
+
+const renderGame = async () => {
+    const requestedID = parseInt(window.location.href.split('/').pop())
+    const response = await fetch('/games')
+    const data = await response.json()
+    const gameContent = document.getElementById('game-content')
+    let game
+    // if data isn't null, find the game using ID
+    game = data.find(game => game.id === requestedID)
+    if (game) {
+        document.getElementById('image').src = game.image
+        document.getElementById('name').textContent = game.name
+        setDetail('players', 'Players', game.minPlayers + '-' + game.maxPlayers)
+        setDetail('playingTime', 'Playing Time', game.playingTime)
+        setDetail('age', 'Age', game.minAge + '+')
+        setDetail('complexity', 'Complexity', game.complexity + ' / 5')
+        setDetail('mechanics', 'Mechanics', game.mechanics.join(', '))
+        document.getElementById('description').textContent = game.description
+        document.title = `${game.name} - Party Games`
+    }
+    else {
+        const message = document.createElement('h2')
+        message.textContent = 'No Games Available 😞'
+        gameContent.appendChild(message)
+    }
+}
+
+renderGame()
