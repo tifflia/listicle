@@ -13,7 +13,7 @@ const renderGames = async () => {
             const bottomContainer = document.createElement('div')
             bottomContainer.classList.add('bottom-container')
 
-            topContainer.style.backgroundImage = `url(${game.image})`
+            topContainer.style.backgroundImage = `url("${game.image}")`
 
             const name = document.createElement('h3')
             name.textContent = game.name

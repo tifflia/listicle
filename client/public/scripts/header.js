@@ -6,14 +6,15 @@ headerContainer.className = 'header-container'
 const headerLeft = document.createElement('div')
 headerLeft.className = 'header-left'
 
-// const headerLogo = document.createElement('img')
-// headerLogo.src = '/logo.png'
-
 const headerTitle = document.createElement('h1')
-headerTitle.textContent = 'UnEarthed'
+headerTitle.textContent = 'Party Games'
 
-// headerLeft.appendChild(headerLogo)
+const headerCaption = document.createElement('p')
+headerCaption.className = 'header-caption'
+headerCaption.textContent = 'Archiving board games that are reliably great for parties.'
+
 headerLeft.appendChild(headerTitle)
+headerLeft.appendChild(headerCaption)
 
 const headerRight = document.createElement('div')
 headerRight.className = 'header-right'
