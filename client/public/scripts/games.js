@@ -41,8 +41,6 @@ const renderGames = async () => {
     }
 }
 
-renderGames()
-
 // write "Label: value" into an element, with the label in bold
 const setDetail = (id, label, value) => {
     const element = document.getElementById(id)
@@ -52,29 +50,32 @@ const setDetail = (id, label, value) => {
 }
 
 const renderGame = async () => {
-    const requestedID = parseInt(window.location.href.split('/').pop())
+    const requestedID = parseInt(window.location.pathname.split('/').pop())
     const response = await fetch('/games')
     const data = await response.json()
-    const gameContent = document.getElementById('game-content')
-    let game
     // if data isn't null, find the game using ID
-    game = data.find(game => game.id === requestedID)
-    if (game) {
-        document.getElementById('image').src = game.image
-        document.getElementById('name').textContent = game.name
-        setDetail('players', 'Players', game.minPlayers + '-' + game.maxPlayers)
-        setDetail('playingTime', 'Playing Time', game.playingTime)
-        setDetail('age', 'Age', game.minAge + '+')
-        setDetail('complexity', 'Complexity', game.complexity + ' / 5')
-        setDetail('mechanics', 'Mechanics', game.mechanics.join(', '))
-        document.getElementById('description').textContent = game.description
-        document.title = `${game.name} - Party Games`
+    const game = data.find(game => game.id === requestedID)
+    // no game matches the requested ID, so the page really doesn't exist
+    if (!game) {
+        window.location.href = '/404.html'
+        return
     }
-    else {
-        const message = document.createElement('h2')
-        message.textContent = 'No Games Available 😞'
-        gameContent.appendChild(message)
-    }
+    document.getElementById('image').src = game.image
+    document.getElementById('name').textContent = game.name
+    setDetail('players', 'Players', game.minPlayers + '-' + game.maxPlayers)
+    setDetail('playingTime', 'Playing Time', game.playingTime)
+    setDetail('age', 'Age', game.minAge + '+')
+    setDetail('complexity', 'Complexity', game.complexity + ' / 5')
+    setDetail('mechanics', 'Mechanics', game.mechanics.join(', '))
+    document.getElementById('description').textContent = game.description
+    document.title = `${game.name} - Party Games`
 }
 
-renderGame()
+// this script is shared by the home page and the game detail page,
+// so pick the renderer based on which one loaded it
+if (document.getElementById('main-content')) {
+    renderGames()
+}
+else {
+    renderGame()
+}

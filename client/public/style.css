@@ -164,25 +164,37 @@ main {
 
 /* 404 Page CSS */
 
-.fof-container{
-    display: table;
-    width: 100%;
-    height: 100vh;
-    text-align: center;
-    color: var(--text);
+/* full-height column so the error block fills whatever the header leaves over */
+.fof-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100dvh;
 }
 
-.fof {
-    display: table-cell;
-    vertical-align: middle;
+.fof-container{
+    /* grow into the leftover space instead of forcing a second viewport of height */
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* the shared `main` rule adds 150px of vertical padding, which overflowed */
+    padding: 24px;
+    text-align: center;
+    color: var(--text);
 }
 
 .fof h1 {
     color: var(--text);
     font-size: 50px;
     display: inline-block;
+    margin-top: 0;
     padding-right: 12px;
     animation: type .6s alternate infinite;
+}
+
+.fof p {
+    margin-bottom: 0;
 }
 
 @keyframes type {

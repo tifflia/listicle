@@ -1,0 +1,270 @@
+/* Root Styles CSS */
+:root {
+    --bg: #100b18;
+    --surface: #1b1426;
+    --border: #3a2a55;
+    --text: #f2ecf8;
+    --muted: #b9aecb;
+    --accent: #b026ff;
+    --accent-bright: #ea38e8;
+
+    background-color: var(--bg);
+    font-family: Avenir, Helvetica, sans-serif;
+    color: var(--text);
+}
+
+body {
+    margin: 0;
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+/* Header CSS */
+.header-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 60px 60px;
+    /* dark wash over the photo so the header text stays readable */
+    background-image:
+        linear-gradient(rgba(16, 11, 24, 0.72), rgba(16, 11, 24, 0.88)),
+        url("/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    border-bottom: 2px solid var(--accent);
+    margin-bottom: 50px;
+}
+
+.header-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+}
+
+.header-left img {
+    height: 64px;
+}
+
+.header-left h1 {
+    margin: 0;
+    font-size: 45px;
+    line-height: 1.1;
+    background-image: linear-gradient(90deg, var(--accent), var(--accent-bright));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.header-caption {
+    margin: 0;
+    color: var(--muted);
+    font-size: 16px;
+}
+
+.header-right {
+    flex: none;
+}
+
+.header-right button {
+  background-color: transparent;
+  border: 2px solid var(--accent);
+  border-radius: 16px;
+  box-sizing: border-box;
+  color: var(--text);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  padding: 15px 16px;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.header-right button:hover {
+  background-color: var(--accent);
+  border-color: var(--accent-bright);
+}
+
+/* Home page CSS */
+
+main {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+    padding: 40px 80px 110px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 400px;
+    overflow: hidden;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0.6rem;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+}
+
+.top-container {
+    flex: none;
+    height: 190px;
+    background-color: #241a33;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    border-bottom: 1px solid var(--border);
+}
+
+.bottom-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 16px 18px 18px;
+}
+
+.bottom-container h3 {
+    margin: 0 0 8px;
+    font-size: 19px;
+}
+
+.bottom-container p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.45;
+}
+
+.bottom-container a {
+    margin-top: auto;
+    padding-top: 12px;
+    color: var(--accent-bright);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.bottom-container a:hover {
+    text-decoration: underline;
+}
+
+/* 404 Page CSS */
+
+/* full-height column so the error block fills whatever the header leaves over */
+.fof-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+.fof-container{
+    /* grow into the leftover space instead of forcing a second viewport of height */
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* the shared `main` rule adds 150px of vertical padding, which overflowed */
+    padding: 24px;
+    text-align: center;
+    color: var(--text);
+}
+
+.fof h1 {
+    color: var(--text);
+    font-size: 50px;
+    display: inline-block;
+    margin-top: 0;
+    padding-right: 12px;
+    animation: type .6s alternate infinite;
+}
+
+.fof p {
+    margin-bottom: 0;
+}
+
+@keyframes type {
+    from {box-shadow: inset -3px 0px 0px var(--accent-bright);}
+    to {box-shadow: inset -3px 0px 0px transparent;}
+}
+
+/* Detail Page CSS*/
+
+.game-info {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 50px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.image-container {
+    flex: 0 0 35%;
+}
+
+.image-container img {
+    display: block;
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 0.6rem;
+}
+
+.game-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.game-details h2 {
+    margin: 0 0 16px;
+    font-size: 32px;
+    line-height: 1.2;
+}
+
+.game-details p {
+    margin: 0 0 10px;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+/* the "Players:", "Age:", etc. labels */
+.game-details strong {
+    color: var(--text);
+}
+
+.game-details #description {
+    margin-top: 20px;
+}
+
+.game-details a {
+    color: var(--accent-bright);
+}
+
+/* stack the image above the details on narrow screens */
+@media (max-width: 800px) {
+    .game-info {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 24px;
+    }
+
+    .image-container {
+        flex: none;
+    }
+}
